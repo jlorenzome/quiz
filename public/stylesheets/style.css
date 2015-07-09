@@ -6,3 +6,9 @@ body 						{font: 16px Georgia, serif;}
 section > div 				{padding: 20px;}
 header, nav, section, footer{background: #eee none repeat scroll 0 0; text-align: center;}
 nav span                    {margin: 0px 10px 0px 0px;}
+#author						{border: 0 none;
+    						display: block;
+    						margin-left: -75px;
+    						margin-top: 20px;
+    						padding-left: 50%;
+    						width: 150px;}

@@ -87,17 +87,25 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
   req.quiz.pregunta = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
+  
   req.quiz
   .validate()
   .then(
     function(err){
     if(err) {
-      res.render('quizes/edit', {quiz: quiz, errors: err.errors});
+      res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
     } else { 
       //guarda en DB los campos pregunta y respuesta de quiz
       req.quiz
       .save({fields: ["pregunta", "respuesta"]})
       .then(function(){ res.redirect('/quizes')})
     }
+  }).catch(function(error){next(error)});
+};
+
+// DELETE /quizes/:id
+exports.destroy = function(req, res) {
+  req.quiz.destroy().then( function () {
+    res.redirect('/quizes');
   }).catch(function(error){next(error)});
 };

@@ -2,8 +2,10 @@ var models = require('../models/models.js');
 
 // Autoload :id
 exports.load = function(req, res, next, quizId) {
-  models.Quiz.find(quizId).then(
-    function(quiz) {
+  models.Quiz.find({
+            where: { id: Number(quizId) },
+            include: [{ model: models.Comment}]      
+    }).then(function(quiz) {
       if (quiz) {
         req.quiz = quiz;
         next();
@@ -34,11 +36,7 @@ exports.index = function(req, res) {
 
 // GET /quizes/:id
 exports.show = function(req, res) {
-  models.Quiz.find(req.params.quizId).then(
-    function(quiz){
-      res.render('quizes/show', {quiz: quiz, errors: []});
-    }
-  ).catch(function(error){next(error);});
+   res.render('quizes/show', {quiz: req.quiz, errors: []});
 };
 
 // GET /quizes/:id/answer

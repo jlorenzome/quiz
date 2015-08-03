@@ -52,3 +52,5 @@ sequelize.sync().then(function() {
 		};
 	});
 });
+
+global.sequelize = sequelize;

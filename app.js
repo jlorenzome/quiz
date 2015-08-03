@@ -19,8 +19,6 @@ app.set('view engine', 'ejs');
 
 app.use(partials());
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'))
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -40,6 +38,7 @@ app.use(function(req, res, next) {
 
     // Hacer visible req.session en las vistas
     res.locals.session = req.session;
+
     next();
 });
 

@@ -3,7 +3,8 @@ var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
-var sessionController = require('../controllers/session_controller')
+var sessionController = require('../controllers/session_controller');
+var statisticController = require('../controllers/statistic_controller');
 
 /* Página de entrtada (home page) */
 router.get('/', function(req, res) {
@@ -38,5 +39,8 @@ router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', 
 	                            sessionController.loginRequired, 
 	                            commentController.publish);
+
+// Obtiene las estadísticas
+router.get('/quizes/statistics', statisticController.index);
 
 module.exports = router;
